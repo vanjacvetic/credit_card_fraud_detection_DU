@@ -120,6 +120,21 @@ Rezultati pokazuju da **Model 1** ostvaruje najbolji balans između precision i 
 
 Zbog velike neuravnoteženosti klasa, sama **accuracy** metrika nije dovoljna za procenu kvaliteta modela. Zato su posebno posmatrane **precision, recall, F1 i PR-AUC** metrike.
 
+### Matrica konfuzije
+
+Za detaljniju analizu rezultata korišćena je **matrica konfuzije** za sva tri modela. Ona prikazuje koliko je transakcija model ispravno klasifikovao, kao i koliko je bilo pogrešnih klasifikacija. U projektu se matrica računa na test skupu na osnovu stvarnih i predviđenih klasa.
+
+Matrica konfuzije sadrži četiri kategorije:
+
+* **True Negative (TN)** – regularne transakcije koje je model ispravno prepoznao kao regularne.
+* **False Positive (FP)** – regularne transakcije koje je model pogrešno označio kao prevaru.
+* **False Negative (FN)** – prevarne transakcije koje model nije prepoznao kao prevaru.
+* **True Positive (TP)** – prevarne transakcije koje je model uspešno prepoznao.
+
+Kod ovog problema posebno je važan **False Negative**, jer predstavlja stvarnu prevaru koju model nije otkrio.
+
+Matrica konfuzije se koristi zajedno sa metrikama kao što su **Precision, Recall i F1-score**, kako bi se dobila potpunija slika o ponašanju modela. U rezultatima projekta Model 3 ostvaruje najveći Recall od **91,83%**, dok Model 1 ima najbolji balans između Precision-a i Recall-a, što se vidi i kroz najveći F1-score i PR-AUC.
+
 ## 7. Diskusija
 Model 3 može biti koristan banci jer ostvaruje najveći recall od 91,84%, što znači da uspeva da prepozna najveći procenat stvarnih prevara među testiranim modelima. Iako je precision nizak (7.25%), njegov cilj je da što manje prevara prođe neprimećeno. Transakcije koje model označi kao sumnjive mogu se zatim poslati na dodatnu proveru, SMS verifikaciju ili privremenu blokadu, čime se smanjuje rizik od propuštanja prevara.
 
