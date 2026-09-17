@@ -94,6 +94,32 @@ Tokom treniranja koristi se **Early Stopping** koji prati `validation loss`. Ako
 
 Kod Modela 2 i Modela 3 koristi se `class_weight`. Pošto je broj fraud transakcija mnogo manji od broja regularnih transakcija, ovim pristupom se greškama na klasi prevara daje veća težina.
 
+## 5. Analiza osetljivosti i hiperparametarska optimizacija
+
+Analiza je sprovedena poređenjem tri različite konfiguracije neuronske mreže za detekciju prevara.
+
+- **Model 1** predstavlja osnovni model bez dodatnog tretiranja neuravnoteženosti klasa.
+- **Model 2** uvodi `class_weight` kako bi se veća pažnja posvetila ređoj klasi, odnosno prevarama.
+- **Model 3**, pored `class_weight`, koristi `Dropout` od `0.30` i L2 regularizaciju od `0.0001`.
+
+Za trening modela korišćen je **Adam optimizator** sa `learning_rate=0.001`, `batch_size=2048` i **Early Stopping**.
+
+Promena hiperparametara pokazala je da korišćenje `class_weight` povećava sposobnost modela da prepozna stvarne prevare. Istovremeno, povećanje **recall-a** dovodi do smanjenja **precision-a**.
+
+## 6. Rezultati evaluacije
+
+| Model | Accuracy | Precision | Recall | F1 | ROC-AUC | PR-AUC |
+|---|---:|---:|---:|---:|---:|---:|
+| Model 1 | 99.94% | 83.52% | 77.55% | 0.804 | 0.982 | 0.824 |
+| Model 2 | 99.08% | 14.67% | 89.80% | 0.252 | 0.960 | 0.700 |
+| Model 3 | 97.97% | 7.25% | 91.84% | 0.134 | 0.977 | 0.714 |
+
+Rezultati pokazuju da **Model 1** ostvaruje najbolji balans između precision i recall metrike.
+
+**Model 3** postiže najveći recall od **91.84%**, što znači da uspešno prepoznaje najveći procenat stvarnih prevara. Međutim, njegova precision vrednost je znatno niža, što ukazuje na veći broj lažnih uzbuna.
+
+Zbog velike neuravnoteženosti klasa, sama **accuracy** metrika nije dovoljna za procenu kvaliteta modela. Zato su posebno posmatrane **precision, recall, F1 i PR-AUC** metrike.
+
 ## 7. Diskusija
 Model 3 može biti koristan banci jer ostvaruje najveći Recall od 90,8%, što znači da uspeva da prepozna najveći procenat stvarnih prevara među testiranim modelima. Iako je Precision nizak (7%), njegov cilj je da što manje prevara prođe neprimećeno. Transakcije koje model označi kao sumnjive mogu se zatim poslati na dodatnu proveru, SMS verifikaciju ili privremenu blokadu, čime se smanjuje rizik od propuštanja prevarnih transakcija.
 
@@ -102,5 +128,9 @@ Kod Modela 3 dodatno se koriste:
 
 * **Dropout = 0.30**, kojim se tokom treninga nasumično isključuje 30% neurona;
 * **L2 regularizacija = 0.0001**, koja ograničava prevelike vrednosti težina i pomaže u smanjenju overfitting-a.
+
+## 8. Zaključak
+
+Kroz proces eksperimentisanja i podešavanja hiperparametara uspešno je razvijena neuronska mreža za detekciju prevara u uslovima neuravnoteženosti klasa. Kombinacijom `Class Weights` balansiranja i metoda regularizacije, kao što su `Dropout` i L2 regularizacija, Model 3 je ostvario najveći **Recall od 91.84%** na testnim podacima. Istovremeno, Model 1 je ostvario najbolji balans između **Precision** i **Recall** metrike. Rezultati pokazuju da izbor hiperparametara direktno utiče na ponašanje modela i da izbor konačne konfiguracije zavisi od prioriteta sistema — veće otkrivanje prevara ili smanjenje broja lažnih uzbuna.
 
 Na ovaj način se porede osnovni model, model sa rešavanjem neuravnoteženosti klasa i model koji pored toga koristi i regularizaciju.
