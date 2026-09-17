@@ -121,7 +121,7 @@ Rezultati pokazuju da **Model 1** ostvaruje najbolji balans između precision i 
 Zbog velike neuravnoteženosti klasa, sama **accuracy** metrika nije dovoljna za procenu kvaliteta modela. Zato su posebno posmatrane **precision, recall, F1 i PR-AUC** metrike.
 
 ## 7. Diskusija
-Model 3 može biti koristan banci jer ostvaruje najveći Recall od 91,84%, što znači da uspeva da prepozna najveći procenat stvarnih prevara među testiranim modelima. Iako je Precision nizak (7.25%), njegov cilj je da što manje prevara prođe neprimećeno. Transakcije koje model označi kao sumnjive mogu se zatim poslati na dodatnu proveru, SMS verifikaciju ili privremenu blokadu, čime se smanjuje rizik od propuštanja prevarnih transakcija.
+Model 3 može biti koristan banci jer ostvaruje najveći recall od 91,84%, što znači da uspeva da prepozna najveći procenat stvarnih prevara među testiranim modelima. Iako je precision nizak (7.25%), njegov cilj je da što manje prevara prođe neprimećeno. Transakcije koje model označi kao sumnjive mogu se zatim poslati na dodatnu proveru, SMS verifikaciju ili privremenu blokadu, čime se smanjuje rizik od propuštanja prevara.
 
 
 Kod Modela 3 dodatno se koriste:
@@ -131,6 +131,6 @@ Kod Modela 3 dodatno se koriste:
 
 ## 8. Zaključak
 
-Kroz proces eksperimentisanja i podešavanja hiperparametara uspešno je razvijena neuronska mreža za detekciju prevara u uslovima neuravnoteženosti klasa. Kombinacijom `Class Weights` balansiranja i metoda regularizacije, kao što su `Dropout` i L2 regularizacija, Model 3 je ostvario najveći **Recall od 91.84%** na testnim podacima. Istovremeno, Model 1 je ostvario najbolji balans između **Precision** i **Recall** metrike. Rezultati pokazuju da izbor hiperparametara direktno utiče na ponašanje modela i da izbor konačne konfiguracije zavisi od prioriteta sistema — veće otkrivanje prevara ili smanjenje broja lažnih uzbuna.
+Kroz proces eksperimentisanja i podešavanja hiperparametara uspešno je razvijena neuronska mreža za detekciju prevara u uslovima neuravnoteženosti klasa. Kombinacijom `Class Weights` balansiranja i metoda regularizacije, kao što su `Dropout` i L2 regularizacija, Model 3 je ostvario najveći **recall od 91.84%** na testnim podacima. Istovremeno, Model 1 je ostvario najbolji balans između **precision** i **recall** metrike. Rezultati pokazuju da izbor hiperparametara direktno utiče na ponašanje modela i da izbor konačne konfiguracije zavisi od prioriteta sistema — veće otkrivanje prevara ili smanjenje broja lažnih uzbuna.
 
 Na ovaj način se porede osnovni model, model sa rešavanjem neuravnoteženosti klasa i model koji pored toga koristi i regularizaciju.
