@@ -121,7 +121,7 @@ Rezultati pokazuju da **Model 1** ostvaruje najbolji balans između precision i 
 Zbog velike neuravnoteženosti klasa, sama **accuracy** metrika nije dovoljna za procenu kvaliteta modela. Zato su posebno posmatrane **precision, recall, F1 i PR-AUC** metrike.
 
 ## 7. Diskusija
-Model 3 može biti koristan banci jer ostvaruje najveći Recall od 90,8%, što znači da uspeva da prepozna najveći procenat stvarnih prevara među testiranim modelima. Iako je Precision nizak (7%), njegov cilj je da što manje prevara prođe neprimećeno. Transakcije koje model označi kao sumnjive mogu se zatim poslati na dodatnu proveru, SMS verifikaciju ili privremenu blokadu, čime se smanjuje rizik od propuštanja prevarnih transakcija.
+Model 3 može biti koristan banci jer ostvaruje najveći Recall od 91,84%, što znači da uspeva da prepozna najveći procenat stvarnih prevara među testiranim modelima. Iako je Precision nizak (7.25%), njegov cilj je da što manje prevara prođe neprimećeno. Transakcije koje model označi kao sumnjive mogu se zatim poslati na dodatnu proveru, SMS verifikaciju ili privremenu blokadu, čime se smanjuje rizik od propuštanja prevarnih transakcija.
 
 
 Kod Modela 3 dodatno se koriste:
