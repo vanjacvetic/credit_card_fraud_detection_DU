@@ -4,6 +4,8 @@ Duboko učenje i neuronske mreže
 
 ## 1. Opis problema
 
+Link za dataset: [Dataset on Kaggle](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud)
+
 Cilj projekta je da pomoću neuronske mreže prepoznamo da li je transakcija kreditnom karticom regularna ili predstavlja prevaru.
 
 U pitanju je binarna klasifikacija:
@@ -91,6 +93,10 @@ Za svaki model postavljen je maksimalan broj od **50 epoha**, uz `batch_size=204
 Tokom treniranja koristi se **Early Stopping** koji prati `validation loss`. Ako se rezultat ne poboljšava tokom 5 uzastopnih epoha, trening se zaustavlja i vraćaju se težine modela koje su dale najbolji rezultat.
 
 Kod Modela 2 i Modela 3 koristi se `class_weight`. Pošto je broj fraud transakcija mnogo manji od broja regularnih transakcija, ovim pristupom se greškama na klasi prevara daje veća težina.
+
+## 7. Diskusija
+Model 3 može biti koristan banci jer ostvaruje najveći Recall od 90,8%, što znači da uspeva da prepozna najveći procenat stvarnih prevara među testiranim modelima. Iako je Precision nizak (7%), njegov cilj je da što manje prevara prođe neprimećeno. Transakcije koje model označi kao sumnjive mogu se zatim poslati na dodatnu proveru, SMS verifikaciju ili privremenu blokadu, čime se smanjuje rizik od propuštanja prevarnih transakcija.
+
 
 Kod Modela 3 dodatno se koriste:
 
